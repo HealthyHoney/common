@@ -24,7 +24,6 @@ TARGET_BOARD_PLATFORM_GPU := qcom-adreno330
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := krait
-TARGET_GCC_VERSION_EXP := 4.9
 
 # Assertions
 TARGET_BOARD_INFO_FILE ?= device/lge/g2-common/board-info.txt
@@ -42,6 +41,7 @@ BOARD_KERNEL_CMDLINE := no_underclock=0 console=ttyHSL0,115200,n8 androidboot.ha
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x05000000 --tags_offset 0x04800000
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-linux-androideabi-
 TARGET_KERNEL_SOURCE := kernel/lge/msm8974
 
 # Audio
