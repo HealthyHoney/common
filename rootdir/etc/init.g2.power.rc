@@ -127,6 +127,8 @@ on property:sys.perf.profile=1
     write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 30000
     setprop ro.qualcomm.perf.cores_online 2
 
+    write /sys/kernel/sched/arch_power 1
+
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
     write /sys/module/msm_thermal/core_control/enabled 1
     start mpdecision
