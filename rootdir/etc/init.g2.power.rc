@@ -8,6 +8,7 @@ on early-init
     write /sys/devices/system/cpu/cpu2/online 1
     write /sys/devices/system/cpu/cpu3/online 1
 
+    write /sys/kernel/sched/arch_power 1
     write /sys/module/mmc_core/parameters/crc 0
     write /sys/devices/fdb00000.qcom,kgsl-3d0/devfreq/fdb00000.qcom,kgsl-3d0/max_freq 320000000
 
@@ -127,8 +128,6 @@ on property:sys.perf.profile=1
     write /sys/devices/system/cpu/cpufreq/interactive/max_freq_hysteresis 100000
     write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 30000
     setprop ro.qualcomm.perf.cores_online 2
-
-    write /sys/kernel/sched/arch_power 1
 
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
     write /sys/module/msm_thermal/core_control/enabled 1
