@@ -323,37 +323,33 @@
     <bool name="config_showNavigationBar">true</bool>
 
     <integer-array name="config_autoBrightnessLevels">
-        <item>1</item>
-        <item>4</item>
-        <item>10</item>
-        <item>32</item>
-        <item>82</item>
-        <item>170</item>
-        <item>350</item>
-        <item>500</item>
-        <item>700</item>
+        <item>5</item>
+        <item>15</item>
+        <item>50</item>
+        <item>100</item>
+        <item>200</item>
+        <item>400</item>
         <item>1000</item>
-        <item>1400</item>
-        <item>2400</item>
-        <item>3500</item>
-        <item>9000</item>
+        <item>2000</item>
+        <item>3000</item>
+        <item>5000</item>
+        <item>10000</item>
+        <item>30000</item>
     </integer-array>
     <integer-array name="config_autoBrightnessLcdBacklightValues">
-        <item>30</item>
-        <item>50</item>
-        <item>72</item>
-        <item>85</item>
-        <item>123</item>
-        <item>137</item>
-        <item>147</item>
-        <item>170</item>
-        <item>178</item>
-        <item>183</item>
-        <item>195</item>
-        <item>212</item>
-        <item>220</item>
-        <item>235</item>
-        <item>255</item>
+        <item>11</item>   <!-- 0-5 -->
+        <item>18</item>   <!-- 5-15 -->
+        <item>27</item>   <!-- 15-50 -->
+        <item>38</item>   <!-- 50-100 -->
+        <item>48</item>   <!-- 100-200 -->
+        <item>55</item>   <!-- 200-400 -->
+        <item>64</item>   <!-- 400-1000 -->
+        <item>74</item>   <!-- 1000-2000 -->
+        <item>120</item>  <!-- 2000-3000 -->
+        <item>164</item>  <!-- 3000-5000 -->
+        <item>225</item>  <!-- 5000-10000 -->
+        <item>255</item>  <!-- 10000-30000 -->
+        <item>255</item>  <!-- 30000+ -->
     </integer-array>
     <integer-array name="config_autoBrightnessButtonBacklightValues">
         <item>0</item>
