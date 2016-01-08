@@ -258,8 +258,6 @@
     <!-- Shutdown if the battery temperature exceeds (this value * 0.1) Celsius. -->
     <integer name="config_shutdownBatteryTemperature">680</integer>
 
-    <bool name="config_ui_enableFadingMarquee">true</bool>
-
     <string-array name="config_usbHostBlacklist">
         <!--  /dev/bus/usb/001 is used for the modem -->
         <item>/dev/bus/usb/001</item>
