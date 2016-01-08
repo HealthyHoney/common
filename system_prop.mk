@@ -65,6 +65,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     rild.libpath=/vendor/lib/libril-qc-qmi-1.so \
     ro.telephony.ril_class=LgeLteRIL
 
+# Setup custom emergency number list based on the MCC. This is needed by RIL
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.radio.custom_ecc=1
+
 # Sensors
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.qti.sdk.sensors.gestures=true \
