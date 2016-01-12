@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Default for Settings.Global.WIFI_IDLE_MS (10 minutes) -->
+    <integer name="def_wifi_idle_ms">600000</integer>
+</resources>
