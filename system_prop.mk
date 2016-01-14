@@ -115,13 +115,3 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 # Wifi
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
-
-# Dalvik
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapstartsize=8m \
-    dalvik.vm.heapgrowthlimit=256m \
-    dalvik.vm.heapsize=512m \
-    dalvik.vm.heaptargetutilization=0.25 \
-    dalvik.vm.heapminfree=4m \
-    dalvik.vm.heapmaxfree=16m \
-    dalvik.vm.dex2oat-swap=false
