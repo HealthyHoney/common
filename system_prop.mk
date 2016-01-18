@@ -4,10 +4,9 @@
 
 # Audio
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.audio.dualmic.config=endfire \
-    persist.audio.fluence.audiorec=true \
+    persist.audio.fluence.voicerec=false \
     persist.audio.fluence.voicecall=true \
-    ro.qc.sdk.audio.fluencetype=fluence \
+    persist.audio.fluence.speaker=false \
     use.voice.path.for.pcm.voip=true
 
 # Bluetooth
