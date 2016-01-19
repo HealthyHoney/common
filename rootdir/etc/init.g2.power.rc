@@ -1,3 +1,11 @@
+on property:init.svc.bootanim=stopped
+    write /sys/kernel/msm_thermal/enabled 0
+    write /sys/kernel/msm_thermal/user_maxfreq 0
+    write /sys/kernel/msm_thermal/low_thresh "1728000 45 43"
+    write /sys/kernel/msm_thermal/mid_thresh "1574400 50 47"
+    write /sys/kernel/msm_thermal/high_thresh "1267200 55 53"
+    write /sys/kernel/msm_thermal/enabled 1
+
 on property:sys.boot_completed=1
     setprop sys.io.scheduler bfq
     write /sys/block/mmcblk0/bdi/read_ahead_kb 512
@@ -37,6 +45,9 @@ on enable-low-power
     chmod 664 /sys/devices/system/cpu/cpu2/online
     chmod 664 /sys/devices/system/cpu/cpu3/online
 
+    chown system system /sys/kernel/msm_thermal/user_maxfreq
+    chmod 0660 /sys/kernel/msm_thermal/user_maxfreq
+
 on charger
     write /sys/module/lpm_levels/enable_low_power/l2 2
     write /sys/module/msm_pm/modes/cpu0/power_collapse/suspend_enabled 1
@@ -44,7 +55,8 @@ on charger
     write /sys/module/msm_pm/modes/cpu2/power_collapse/suspend_enabled 1
     write /sys/module/msm_pm/modes/cpu3/power_collapse/suspend_enabled 1
     write /sys/module/msm_pm/modes/cpu0/power_collapse/idle_enabled 1
-    write /sys/module/msm_thermal/core_control/enabled 0
+
+    write /sys/kernel/msm_thermal/enabled 0
     write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 1
     write /sys/devices/system/cpu/cpu3/online 1
@@ -56,10 +68,11 @@ on charger
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 268800
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 268800
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 268800
-    write /sys/module/msm_thermal/core_control/enabled 1
     write /sys/devices/system/cpu/cpu1/online 0
     write /sys/devices/system/cpu/cpu2/online 0
     write /sys/devices/system/cpu/cpu3/online 0
+    write /sys/kernel/msm_thermal/user_maxfreq 729600
+    write /sys/kernel/msm_thermal/enabled 1
 
 on boot
     trigger enable-low-power
@@ -73,7 +86,7 @@ on property:sys.perf.profile=0
     write /sys/class/devfreq/qcom,cpubw.42/governor "powersave"
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
 
-    write /sys/module/msm_thermal/core_control/enabled 0
+    write /sys/kernel/msm_thermal/enabled 0
     write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 1
     write /sys/devices/system/cpu/cpu3/online 1
@@ -81,7 +94,8 @@ on property:sys.perf.profile=0
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "conservative"
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "conservative"
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "conservative"
-    write /sys/module/msm_thermal/core_control/enabled 1
+    write /sys/kernel/msm_thermal/user_maxfreq 729600
+    write /sys/kernel/msm_thermal/enabled 1
     start mpdecision
 
 on property:sys.perf.profile=1
@@ -95,7 +109,7 @@ on property:sys.perf.profile=1
     write /sys/module/cpu_boost/parameters/input_boost_freq 0
     write /sys/module/cpu_boost/parameters/input_boost_ms 0
 
-    write /sys/module/msm_thermal/core_control/enabled 0
+    write /sys/kernel/msm_thermal/enabled 0
     write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 1
     write /sys/devices/system/cpu/cpu3/online 1
@@ -118,10 +132,15 @@ on property:sys.perf.profile=1
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 268800
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 268800
 
+    write /sys/kernel/msm_thermal/user_maxfreq 0
+    write /sys/kernel/msm_thermal/low_thresh "1574400 45 43"
+    write /sys/kernel/msm_thermal/mid_thresh "1267200 50 47"
+    write /sys/kernel/msm_thermal/high_thresh "1190400 55 53"
+    write /sys/kernel/msm_thermal/sampling_ms 10000
+    write /sys/kernel/msm_thermal/enabled 1
+
     setprop ro.min_freq_0 268800
     setprop ro.qualcomm.perf.cores_online 2
-
-    write /sys/module/msm_thermal/core_control/enabled 1
     start mpdecision
 
 on property:sys.perf.profile=2
@@ -129,7 +148,7 @@ on property:sys.perf.profile=2
     write /sys/class/devfreq/qcom,cpubw.42/governor "performance"
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor "performance"
 
-    write /sys/module/msm_thermal/core_control/enabled 0
+    write /sys/kernel/msm_thermal/enabled 0
     write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 1
     write /sys/devices/system/cpu/cpu3/online 1
@@ -137,4 +156,5 @@ on property:sys.perf.profile=2
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "performance"
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "performance"
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "performance"
-    write /sys/module/msm_thermal/core_control/enabled 1
+    write /sys/kernel/msm_thermal/user_maxfreq 0
+    write /sys/kernel/msm_thermal/enabled 1
