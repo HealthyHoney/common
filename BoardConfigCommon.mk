@@ -41,7 +41,7 @@ BOARD_KERNEL_CMDLINE := no_underclock=0 console=ttyHSL0,115200,n8 androidboot.ha
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x05000000 --tags_offset 0x04800000
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-linux-androideabi-
+TARGET_GCC_VERSION_EXP := 4.9
 TARGET_KERNEL_SOURCE := kernel/lge/msm8974
 
 # Audio
