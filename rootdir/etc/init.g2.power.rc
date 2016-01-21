@@ -142,7 +142,7 @@ on property:sys.perf.profile=1
     write /sys/kernel/msm_thermal/enabled 1
 
     setprop ro.min_freq_0 268800
-    setprop ro.qualcomm.perf.cores_online 2
+    setprop ro.qualcomm.perf.cores_online 1
     start mpdecision
 
 on property:sys.perf.profile=2
