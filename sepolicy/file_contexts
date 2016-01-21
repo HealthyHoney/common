@@ -22,3 +22,5 @@
 /data/cam_socket.*                    u:object_r:camera_socket:s0
 
 /data/mmosal_logmask.cfg              u:object_r:mmosal_logmask:s0
+
+/dev/ttyHSL1                                        u:object_r:cir_device:s0
