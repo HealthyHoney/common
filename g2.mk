@@ -212,6 +212,7 @@ TARGET_UNOFFICIAL_BUILD_ID := temasek
 PRODUCT_PACKAGES += \
     Snap \
     SnapdragonCamera \
+    CAFmera \
     OTAUpdates
 
 PRODUCT_PROPERTY_OVERRIDES += \
