@@ -112,3 +112,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 # Wifi
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
+
+# MSM Simple Thermal Monitor
+PRODUCT_PROPERTY_OVERRIDES += \
+    sys.simple_msm_thermal.max_freq=0
