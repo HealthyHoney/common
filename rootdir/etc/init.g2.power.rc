@@ -1,3 +1,8 @@
+on property:sys.setup_msm_thermal.max_freq=*
+    write /sys/kernel/msm_thermal/enabled 0
+    write /sys/kernel/msm_thermal/user_maxfreq ${sys.setup_msm_thermal.max_freq}
+    write /sys/kernel/msm_thermal/enabled 1
+
 on property:init.svc.bootanim=stopped
     write /sys/kernel/msm_thermal/enabled 0
     write /sys/kernel/msm_thermal/user_maxfreq 0
@@ -15,6 +20,7 @@ on property:sys.boot_completed=1
     write /sys/module/workqueue/parameters/power_efficient 1
 
     setprop sys.perf.profile 1
+    setprop sys.setup_msm_thermal.max_freq ${sys.simple_msm_thermal.max_freq}
 
 on enable-low-power
     write /sys/module/lpm_levels/enable_low_power/l2 4
