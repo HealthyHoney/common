@@ -115,4 +115,4 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # MSM Simple Thermal Monitor
 PRODUCT_PROPERTY_OVERRIDES += \
-    sys.simple_msm_thermal.max_freq=0
+    sys.simple_msm_thermal.max_freq=1958400
