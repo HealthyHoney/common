@@ -88,22 +88,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.qti.sensors.vmd=false \
     ro.qti.sensors.wu=false
 
-# Sensor debugging
-# Valid settings (and presumably what they mean):
-#   0      - off
-#   1      - all the things
-#   V or v - verbose
-#   D or d - debug
-#   E or e - errors
-#   W or w - warnings
-#   I or i - info
-#
+# Sensor and kernel debugging
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.qualcomm.sns.hal=e \
     debug.qualcomm.sns.daemon=e \
     debug.qualcomm.sns.libsensor1=e \
     persist.debug.sensors.hal=e \
-    persist.debug.ar.hal=e
+    persist.debug.ar.hal=e \
+    persist.sys.ssr.enable_debug=0
 
 # USB
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
