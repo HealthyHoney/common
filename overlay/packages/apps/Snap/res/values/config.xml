@@ -10,7 +10,11 @@
          Example: lge-camera=1;cam-mode=0 -->
     <string name="manufacturer_key_values">lge-camera=1</string>
 
-    <!-- Use following iso parameter.
+    <!-- Force use a specific preview-size
+         Example: 1920x1080 -->
+    <string name="preview_size_for_photo">1920x1080</string>
+
+    <!-- Use custom iso parameter.
          Example: lg-iso
                   lg-iso-values -->
     <string name="key_iso">lg-iso</string>
