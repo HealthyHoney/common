@@ -30,6 +30,6 @@ fi
 if [ -f /data/property/persist.hh.maxfreq ]; then
 	echo "persist.hh.maxfreq already exists.. Skipping.."
 else
-	echo -n 0 > /data/property/persist.hh.maxfreq
+	printf %i 0 > /data/property/persist.hh.maxfreq
 	chmod 0600 /data/property/persist.hh.maxfreq
 fi
