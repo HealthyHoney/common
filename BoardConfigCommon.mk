@@ -16,9 +16,6 @@
 
 TARGET_SPECIFIC_HEADER_PATH := device/lge/g2-common/include
 
-# Use cortex-a15 optimized Uber toolchain
-TARGET_GCC_VERSION_EXP := 4.9-cortex-a15
-
 # Architecture
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
