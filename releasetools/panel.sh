@@ -22,14 +22,3 @@ elif [ "$lcdmaker" == "0" ]; then
 else
 	echo "lcd_maker_id doesn't exist. Something went wrong."
 fi
-
-#
-# Setup HH CPU max freq
-#
-
-if [ -f /data/property/persist.hh.maxfreq ]; then
-	echo "persist.hh.maxfreq already exists.. Skipping.."
-else
-	printf %i 0 > /data/property/persist.hh.maxfreq
-	chmod 0600 /data/property/persist.hh.maxfreq
-fi
