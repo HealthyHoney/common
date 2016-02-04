@@ -66,6 +66,4 @@ def FullOTA_InstallEnd(info):
   info.script.AppendExtra('assert(run_program("/system/bin/panel.sh") == 0);')
   info.script.AppendExtra('assert(run_program("/sbin/sh", "-c", "busybox dd if=/tmp/boot.img of=/dev/block/platform/msm_sdcc.1/by-name/boot") == 0);')
   info.script.AppendExtra('delete("/system/bin/panel.sh");')
-  info.script.AppendExtra('assert(run_program("/sbin/sh", "-c", "busybox test -f /data/property/persists.hh.maxfreq || printf %i 0 > /data/property/persists.hh.maxfreq") == 0);')
-  info.script.AppendExtra('set_metadata("/data/property/persists.hh.maxfreq", "mode", 0600);')
   info.script.Unmount("/system")
