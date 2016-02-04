@@ -1,6 +1,5 @@
 on property:init.svc.bootanim=stopped
     write /sys/kernel/msm_thermal/enabled 0
-    write /sys/kernel/msm_thermal/user_maxfreq 0
     write /sys/kernel/msm_thermal/low_thresh "1728000 45 43"
     write /sys/kernel/msm_thermal/mid_thresh "1574400 50 47"
     write /sys/kernel/msm_thermal/high_thresh "1267200 55 53"
@@ -47,9 +46,6 @@ on enable-low-power
     chmod 664 /sys/devices/system/cpu/cpu2/online
     chmod 664 /sys/devices/system/cpu/cpu3/online
 
-    chown system system /sys/kernel/msm_thermal/user_maxfreq
-    chmod 0660 /sys/kernel/msm_thermal/user_maxfreq
-
     rm /data/system/default_values
 
 on charger
@@ -75,7 +71,6 @@ on charger
     write /sys/devices/system/cpu/cpu1/online 0
     write /sys/devices/system/cpu/cpu2/online 0
     write /sys/devices/system/cpu/cpu3/online 0
-    write /sys/kernel/msm_thermal/user_maxfreq 729600
     write /sys/kernel/msm_thermal/enabled 1
 
 on boot
@@ -99,7 +94,6 @@ on property:sys.perf.profile=0
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "conservative"
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "conservative"
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "conservative"
-    write /sys/kernel/msm_thermal/user_maxfreq 729600
     write /sys/kernel/msm_thermal/enabled 1
     start mpdecision
 
@@ -138,8 +132,6 @@ on property:sys.perf.profile=1
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 268800
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 268800
 
-    write /sys/kernel/msm_thermal/user_maxfreq 0
-    write /sys/kernel/msm_thermal/user_maxfreq ${persist.hh.maxfreq}
     write /sys/kernel/msm_thermal/low_thresh "1574400 45 43"
     write /sys/kernel/msm_thermal/mid_thresh "1267200 50 47"
     write /sys/kernel/msm_thermal/high_thresh "1190400 55 53"
@@ -163,5 +155,4 @@ on property:sys.perf.profile=2
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "performance"
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "performance"
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "performance"
-    write /sys/kernel/msm_thermal/user_maxfreq 0
     write /sys/kernel/msm_thermal/enabled 1
