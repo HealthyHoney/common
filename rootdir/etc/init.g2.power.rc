@@ -85,7 +85,7 @@ on property:init.svc.recovery=running
 
 # Performance Profiles
 on property:sys.perf.profile=0
-    stop mpdecision
+    write /sys/kernel/msm_mpdecision/conf/enabled 0
     write /sys/class/devfreq/qcom,cpubw.42/governor "powersave"
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
 
@@ -106,10 +106,10 @@ on property:sys.perf.profile=0
     write /sys/devices/system/cpu/cpu2/online 0
     write /sys/devices/system/cpu/cpu3/online 0
     write /sys/kernel/msm_thermal/enabled 1
-    start mpdecision
+    write /sys/kernel/msm_mpdecision/conf/enabled 1
 
 on property:sys.perf.profile=1
-    stop mpdecision
+    write /sys/kernel/msm_mpdecision/conf/enabled 0
     write /sys/class/devfreq/qcom,cpubw.42/governor "msm_cpufreq"
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
     write /sys/devices/fdb00000.qcom,kgsl-3d0/devfreq/fdb00000.qcom,kgsl-3d0/max_freq 320000000
@@ -149,11 +149,10 @@ on property:sys.perf.profile=1
     write /sys/kernel/msm_thermal/sampling_ms 10000
     write /sys/kernel/msm_thermal/enabled 1
 
-    setprop ro.min_freq_0 268800
-    start mpdecision
+    write /sys/kernel/msm_mpdecision/conf/enabled 1
 
 on property:sys.perf.profile=2
-    stop mpdecision
+    write /sys/kernel/msm_mpdecision/conf/enabled 0
     write /sys/class/devfreq/qcom,cpubw.42/governor "performance"
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor "performance"
 
