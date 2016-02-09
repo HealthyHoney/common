@@ -16,7 +16,6 @@ on property:sys.boot_completed=1
 
     write /sys/devices/system/cpu/cpu0/cpufreq/UV_mV_table "725 725 730 740 750 760 780 790 800 820 830 870 885 915 950 1005"
 
-    stop mpdecision
     write /sys/class/devfreq/qcom,cpubw.42/governor "msm_cpufreq"
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
     write /sys/devices/fdb00000.qcom,kgsl-3d0/devfreq/fdb00000.qcom,kgsl-3d0/max_freq 320000000
@@ -27,6 +26,7 @@ on property:sys.boot_completed=1
     write /sys/module/cpu_boost/parameters/input_boost_freq 0
     write /sys/module/cpu_boost/parameters/input_boost_ms 0
 
+    stop mpdecision
     write /sys/kernel/msm_thermal/enabled 0
     write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 1
@@ -49,14 +49,13 @@ on property:sys.boot_completed=1
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 268800
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 268800
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 268800
+    setprop ro.min_freq_0 268800
 
     write /sys/kernel/msm_thermal/low_thresh "1574400 45 43"
     write /sys/kernel/msm_thermal/mid_thresh "1267200 50 47"
     write /sys/kernel/msm_thermal/high_thresh "1190400 55 53"
     write /sys/kernel/msm_thermal/sampling_ms 10000
     write /sys/kernel/msm_thermal/enabled 1
-
-    setprop ro.min_freq_0 268800
     start mpdecision
 
 on enable-low-power
