@@ -14,7 +14,48 @@ on property:sys.boot_completed=1
     write /sys/module/workqueue/parameters/power_efficient 1
     write /dev/cpuctl/cpu.notify_on_migrate 0
 
-    setprop sys.perf.profile 1
+    stop mpdecision
+    write /sys/class/devfreq/qcom,cpubw.42/governor "msm_cpufreq"
+    write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
+    write /sys/devices/fdb00000.qcom,kgsl-3d0/devfreq/fdb00000.qcom,kgsl-3d0/max_freq 320000000
+
+    write /sys/devices/system/cpu/sched_mc_power_savings 2
+    write /sys/module/cpu_boost/parameters/boost_ms 0
+    write /sys/module/cpu_boost/parameters/sync_threshold 0
+    write /sys/module/cpu_boost/parameters/input_boost_freq 0
+    write /sys/module/cpu_boost/parameters/input_boost_ms 0
+
+    write /sys/kernel/msm_thermal/enabled 0
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "interactive"
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "interactive"
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "interactive"
+    write /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay "20000 1400000:40000 1700000:20000"
+    write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 90
+    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 1190400
+    write /sys/devices/system/cpu/cpufreq/interactive/io_is_busy 0
+    write /sys/devices/system/cpu/cpufreq/interactive/sampling_down_factor 100000
+    write /sys/devices/system/cpu/cpufreq/interactive/target_loads "85 1500000:90 1800000:70"
+    write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 40000
+    write /sys/devices/system/cpu/cpufreq/interactive/max_freq_hysteresis 100000
+    write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 30000
+
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 268800
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 268800
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 268800
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 268800
+
+    write /sys/kernel/msm_thermal/low_thresh "1574400 45 43"
+    write /sys/kernel/msm_thermal/mid_thresh "1267200 50 47"
+    write /sys/kernel/msm_thermal/high_thresh "1190400 55 53"
+    write /sys/kernel/msm_thermal/sampling_ms 10000
+    write /sys/kernel/msm_thermal/enabled 1
+
+    setprop ro.min_freq_0 268800
+    start mpdecision
 
 on enable-low-power
     write /sys/module/lpm_levels/enable_low_power/l2 4
@@ -82,88 +123,3 @@ on boot
 
 on property:init.svc.recovery=running
     trigger enable-low-power
-
-# Performance Profiles
-on property:sys.perf.profile=0
-    stop mpdecision
-    write /sys/class/devfreq/qcom,cpubw.42/governor "powersave"
-    write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
-
-    write /sys/devices/system/cpu/sched_mc_power_savings 2
-    write /sys/kernel/msm_thermal/enabled 0
-    write /sys/devices/system/cpu/cpu1/online 1
-    write /sys/devices/system/cpu/cpu2/online 1
-    write /sys/devices/system/cpu/cpu3/online 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "conservative"
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "conservative"
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "conservative"
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "conservative"
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1036800
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq 1036800
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 1036800
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq 1036800
-    write /sys/devices/system/cpu/cpu1/online 0
-    write /sys/devices/system/cpu/cpu2/online 0
-    write /sys/devices/system/cpu/cpu3/online 0
-    write /sys/kernel/msm_thermal/enabled 1
-    start mpdecision
-
-on property:sys.perf.profile=1
-    stop mpdecision
-    write /sys/class/devfreq/qcom,cpubw.42/governor "msm_cpufreq"
-    write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
-    write /sys/devices/fdb00000.qcom,kgsl-3d0/devfreq/fdb00000.qcom,kgsl-3d0/max_freq 320000000
-
-    write /sys/devices/system/cpu/sched_mc_power_savings 2
-    write /sys/module/cpu_boost/parameters/boost_ms 0
-    write /sys/module/cpu_boost/parameters/sync_threshold 0
-    write /sys/module/cpu_boost/parameters/input_boost_freq 0
-    write /sys/module/cpu_boost/parameters/input_boost_ms 0
-
-    write /sys/kernel/msm_thermal/enabled 0
-    write /sys/devices/system/cpu/cpu1/online 1
-    write /sys/devices/system/cpu/cpu2/online 1
-    write /sys/devices/system/cpu/cpu3/online 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay "20000 1400000:40000 1700000:20000"
-    write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 90
-    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 1190400
-    write /sys/devices/system/cpu/cpufreq/interactive/io_is_busy 0
-    write /sys/devices/system/cpu/cpufreq/interactive/sampling_down_factor 100000
-    write /sys/devices/system/cpu/cpufreq/interactive/target_loads "85 1500000:90 1800000:70"
-    write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 40000
-    write /sys/devices/system/cpu/cpufreq/interactive/max_freq_hysteresis 100000
-    write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 30000
-
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 268800
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 268800
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 268800
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 268800
-
-    write /sys/kernel/msm_thermal/low_thresh "1574400 45 43"
-    write /sys/kernel/msm_thermal/mid_thresh "1267200 50 47"
-    write /sys/kernel/msm_thermal/high_thresh "1190400 55 53"
-    write /sys/kernel/msm_thermal/sampling_ms 10000
-    write /sys/kernel/msm_thermal/enabled 1
-
-    setprop ro.min_freq_0 268800
-    start mpdecision
-
-on property:sys.perf.profile=2
-    stop mpdecision
-    write /sys/class/devfreq/qcom,cpubw.42/governor "performance"
-    write /sys/class/kgsl/kgsl-3d0/devfreq/governor "performance"
-
-    write /sys/devices/system/cpu/sched_mc_power_savings 0
-    write /sys/kernel/msm_thermal/enabled 0
-    write /sys/devices/system/cpu/cpu1/online 1
-    write /sys/devices/system/cpu/cpu2/online 1
-    write /sys/devices/system/cpu/cpu3/online 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "performance"
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "performance"
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "performance"
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "performance"
-    write /sys/kernel/msm_thermal/enabled 1
