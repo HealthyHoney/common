@@ -14,8 +14,6 @@ on property:sys.boot_completed=1
     write /sys/module/workqueue/parameters/power_efficient 1
     write /dev/cpuctl/cpu.notify_on_migrate 0
 
-    write /sys/devices/system/cpu/cpu0/cpufreq/UV_mV_table "725 725 730 740 750 760 780 790 800 820 830 870 885 915 950 1005"
-
     write /sys/class/devfreq/qcom,cpubw.42/governor "msm_cpufreq"
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
     write /sys/devices/fdb00000.qcom,kgsl-3d0/devfreq/fdb00000.qcom,kgsl-3d0/max_freq 320000000
