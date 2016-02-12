@@ -58,7 +58,7 @@ def AssertPartitionChecksum(info, partition, size, checksums):
             ');')
 
 def FullOTA_InstallEnd(info):
-  info.script.Print("                         ");
+  info.script.Print(" ");
   info.script.Print("Powered by HH LITE KERNEL");
   info.script.Print("                         ");
   info.script.Print("     ,--./,-.            ");
@@ -66,4 +66,4 @@ def FullOTA_InstallEnd(info):
   info.script.Print("   |          |          ");
   info.script.Print("    \        /           ");
   info.script.Print("     `._,._,'            ");
-  info.script.Print("                         ");
+  info.script.Print(" ");
