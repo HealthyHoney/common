@@ -16,7 +16,7 @@ on property:sys.boot_completed=1
 
     write /sys/class/devfreq/qcom,cpubw.42/governor "msm_cpufreq"
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
-    write /sys/devices/fdb00000.qcom,kgsl-3d0/devfreq/fdb00000.qcom,kgsl-3d0/max_freq 320000000
+    write /sys/devices/fdb00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_gpuclk 320000000
 
     write /sys/devices/system/cpu/sched_mc_power_savings 2
     write /sys/module/cpu_boost/parameters/boost_ms 0
