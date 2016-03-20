@@ -17,6 +17,11 @@ on property:sys.boot_completed=1
     write /sys/module/workqueue/parameters/power_efficient 0
     write /dev/cpuctl/cpu.notify_on_migrate 0
 
+    chmod 0664 /sys/module/lowmemorykiller/parameters/adj
+    write /sys/module/lowmemorykiller/parameters/adj 0,1,2,3,9,15
+    chmod 0664 /sys/module/lowmemorykiller/parameters/minfree
+    write /sys/module/lowmemorykiller/parameters/minfree 73728,92160,110592,129024,196608,245760
+
     write /sys/class/devfreq/qcom,cpubw.42/governor "msm_cpufreq"
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
     write /sys/devices/fdb00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_gpuclk 320000000
