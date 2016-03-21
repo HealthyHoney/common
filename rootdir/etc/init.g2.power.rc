@@ -6,36 +6,40 @@ on property:init.svc.bootanim=stopped
     write /sys/kernel/msm_thermal/enabled 1
 
 on property:sys.boot_completed=1
+    # I/O
     setprop sys.io.scheduler zen
     write /sys/block/mmcblk0/bdi/read_ahead_kb 1536
 
-    write /sys/kernel/autosmp/conf/cpufreq_down 80
-    write /sys/kernel/autosmp/conf/cpufreq_up 95
-    write /sys/kernel/autosmp/conf/delay 30
-
-    write /proc/sys/vm/swappiness 60
-    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
-    write /sys/kernel/sched/arch_power 1
-    write /sys/module/mmc_core/parameters/crc 0
-    write /sys/module/workqueue/parameters/power_efficient 0
-    write /dev/cpuctl/cpu.notify_on_migrate 0
-
-    chmod 0664 /sys/module/lowmemorykiller/parameters/adj
-    write /sys/module/lowmemorykiller/parameters/adj 0,1,2,3,9,15
-    chmod 0664 /sys/module/lowmemorykiller/parameters/minfree
-    write /sys/module/lowmemorykiller/parameters/minfree 73728,92160,110592,129024,196608,245760
-
-    write /sys/class/devfreq/qcom,cpubw.42/governor "msm_cpufreq"
-    write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
-    write /sys/devices/fdb00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_gpuclk 320000000
-
-    write /sys/devices/system/cpu/sched_mc_power_savings 0
+    # Boost
     write /sys/module/cpu_boost/parameters/boost_ms 0
     write /sys/module/cpu_boost/parameters/sync_threshold 0
     write /sys/module/cpu_boost/parameters/input_boost_freq 0
     write /sys/module/cpu_boost/parameters/input_boost_ms 0
 
+    # Power
+    write /sys/devices/system/cpu/sched_mc_power_savings 0
+    write /sys/kernel/sched/arch_power 1
+    write /sys/module/mmc_core/parameters/crc 0
+    write /sys/module/workqueue/parameters/power_efficient 0
+    write /dev/cpuctl/cpu.notify_on_migrate 0
+
+    # Memory
+    write /proc/sys/vm/swappiness 60
+    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
+    chmod 0664 /sys/module/lowmemorykiller/parameters/adj
+    write /sys/module/lowmemorykiller/parameters/adj 0,1,2,3,9,15
+    chmod 0664 /sys/module/lowmemorykiller/parameters/minfree
+    write /sys/module/lowmemorykiller/parameters/minfree 73728,92160,110592,129024,196608,245760
+
+    # GPU
+    write /sys/class/devfreq/qcom,cpubw.42/governor "msm_cpufreq"
+    write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
+    write /sys/devices/fdb00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_gpuclk 320000000
+
+    # CPU
     write /sys/kernel/msm_thermal/enabled 0
+    write /sys/module/autosmp/parameters/enabled 0
+
     write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 1
     write /sys/devices/system/cpu/cpu3/online 1
@@ -45,24 +49,16 @@ on property:sys.boot_completed=1
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "ondemandx"
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "ondemandx"
 
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 268800
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 268800
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 268800
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 268800
-
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1958400
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq 1958400
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 1958400
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq 1958400
-    chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-    chmod 444 /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
-    chmod 444 /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq
-    chmod 444 /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq
+    write /sys/kernel/autosmp/conf/cpufreq_down 80
+    write /sys/kernel/autosmp/conf/cpufreq_up 95
+    write /sys/kernel/autosmp/conf/delay 30
 
     write /sys/kernel/msm_thermal/low_thresh "1574400 45 43"
     write /sys/kernel/msm_thermal/mid_thresh "1267200 50 47"
     write /sys/kernel/msm_thermal/high_thresh "1190400 55 53"
     write /sys/kernel/msm_thermal/sampling_ms 40000
+
+    write /sys/module/autosmp/parameters/enabled 1
     write /sys/kernel/msm_thermal/enabled 1
 
 on enable-low-power
