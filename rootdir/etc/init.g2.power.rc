@@ -26,10 +26,6 @@ on property:sys.boot_completed=1
     # Memory
     write /proc/sys/vm/swappiness 60
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
-    chmod 0664 /sys/module/lowmemorykiller/parameters/adj
-    write /sys/module/lowmemorykiller/parameters/adj 0,1,2,3,9,15
-    chmod 0664 /sys/module/lowmemorykiller/parameters/minfree
-    write /sys/module/lowmemorykiller/parameters/minfree 73728,92160,110592,129024,196608,245760
 
     # GPU
     write /sys/class/devfreq/qcom,cpubw.42/governor "msm_cpufreq"
