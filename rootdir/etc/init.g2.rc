@@ -39,8 +39,6 @@ on early-init
 
     symlink /data/tombstones /tombstones
 
-    write /sys/class/leds/lcd-backlight/brightness 130
-
 on init
     mkdir /persist 0771 system system
     mkdir /factory 0775 system system
