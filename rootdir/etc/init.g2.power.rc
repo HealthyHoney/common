@@ -24,8 +24,6 @@ on property:sys.boot_completed=1
     write /dev/cpuctl/cpu.notify_on_migrate 0
 
     # Memory
-    write /proc/sys/vm/swappiness 10
-    write /proc/sys/vm/dirty_ratio 40
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
 
     # GPU
