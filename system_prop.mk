@@ -22,7 +22,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.hwc.mdpcomp.enable=true \
     ro.opengles.version=196608 \
     ro.sf.lcd_density=480 \
-    persist.sys.lcd_density=380
+    persist.sys.lcd_density=400
 
 # DRM
 PRODUCT_PROPERTY_OVERRIDES += \
