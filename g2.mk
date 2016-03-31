@@ -206,15 +206,7 @@ PRODUCT_COPY_FILES += \
 
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
 
-TARGET_UNOFFICIAL_BUILD_ID := temasek
-
 PRODUCT_PACKAGES += \
     Snap \
     SnapdragonCamera \
-    CAFmera \
-    OTAUpdates
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.ota.romname=temasek-D802 \
-    ro.ota.version=$(shell date -u +%y%m%d%H%M) \
-    ro.ota.manifest=http://temasek.wysocki.mobi/ota/d802_rom.xml
+    CAFmera
